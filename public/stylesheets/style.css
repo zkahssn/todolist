@@ -1,0 +1,41 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.dailyInput{
+  background-color: #00B7FF;
+  width:25%;
+  display: inline-block;
+  margin-top:10px;
+  text-align: center;
+  border: 2px solid #00B7FF;
+  border-radius: 5px;
+  padding:2px;
+}
+
+.submit{
+  display:none;
+}
+
+.dailyInput  input{
+  display: inline-block;
+  border-radius: 5px;
+  border: 0.5px solid #00B7FF;
+}
+
+h3{
+  text-transform: uppercase;
+  color:yellow;
+}
+
+.item{
+  color:greenyellow;
+  font-weight: bold;
+  text-transform: uppercase;
+  
+}

@@ -1,0 +1,72 @@
+<div>
+    <div class='dailyInput'>
+        <h3>Monday</h3>
+        <form id='monday'>
+            <input class='monday' type="text" name="monday">
+        </form>
+    </div>
+    <div class='dailyInput'>
+        <h3>Tuesday</h3>
+        <form id='tuesday'>
+            <input class='tuesday' type="text" name="tuesday">
+        </form>
+    </div>
+    <div class='dailyInput'>
+        <h3>Wednesday</h3>
+        <form id='wednesday'>
+            <input class='wednesday' type="text" name="wednesday">
+        </form>
+    </div>
+    <div class='dailyInput'>
+        <h3>Thursday</h3>
+        <form id='thursday'>
+            <input class='thursday' type="text" name="thursday">
+        </form>
+    </div>
+    <div class='dailyInput'>
+        <h3>Friday</h3>
+        <form id='friday'>
+            <input class='friday ' type="text" name="friday">
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    function handleClick(element) {
+        if (element.style.textDecoration == "line-through") {
+            element.style.textDecoration = "none";
+        }
+        else {
+            element.style.textDecoration = "line-through";
+            element.style.display = "none";
+
+        }
+    }
+    function processResponse(response, day) {
+        $('#' + day).parent().append("<div class = 'item' onclick=handleClick(this)><p>" + response + "</h1></div>");
+    }
+    function processInputs(day) {
+        $('#' + day).on('submit', function (event) {
+            event.preventDefault(); // Stop the form from causing a page refresh.
+            var data = {
+                action: $('.' + day).val()
+            };
+            $.ajax({
+                url: 'http://localhost:3000/newweek',
+                data: data,
+                method: 'POST'
+            }).then(function (response) {
+                // Do stuff with the response, like add it to the page dynamically.
+                processResponse(response, day)
+            }).catch(function (err) {
+                console.error(err);
+            });
+        });
+    }
+    processInputs('monday');
+    processInputs('tuesday');
+    processInputs('wednesday');
+    processInputs('thursday');
+    processInputs('friday');
+
+
+</script>
