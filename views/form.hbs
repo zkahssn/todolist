@@ -51,7 +51,7 @@
                 action: $('.' + day).val()
             };
             $.ajax({
-                url: 'http://localhost:3000/newweek',
+                url: 'http://localhost:5000/newweek',
                 data: data,
                 method: 'POST'
             }).then(function (response) {
@@ -67,6 +67,5 @@
     processInputs('wednesday');
     processInputs('thursday');
     processInputs('friday');
-
 
 </script>
