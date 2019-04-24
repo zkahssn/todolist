@@ -42,24 +42,24 @@
         }
     }
     function processResponse(response, day) {
-        $('#' + day).parent().append("<div class = 'item' onclick=handleClick(this)><p>" + response + "</h1></div>");
+        document.getElementById(day).parent().append("<div class = 'item' onclick=handleClick(this)><p>" + response + "</h1></div>");
     }
     function processInputs(day) {
-        $('#' + day).on('submit', function (event) {
+        document.getElementById(day).addEventListener('submit', function (event) {
             event.preventDefault(); // Stop the form from causing a page refresh.
             var data = {
-                action: $('.' + day).val()
+                action: "Hello World"
             };
-            $.ajax({
-                url: 'http://localhost:5000/newweek',
-                data: data,
-                method: 'POST'
-            }).then(function (response) {
-                // Do stuff with the response, like add it to the page dynamically.
-                processResponse(response, day)
-            }).catch(function (err) {
-                console.error(err);
-            });
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                        alert(this.responseText);
+                }
+            };
+
+            xhttp.open("POST", "http://localhost:5000/newweek", true);
+            xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify(data));
         });
     }
     processInputs('monday');

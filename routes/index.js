@@ -18,7 +18,8 @@ router.post('/', function(req, res, next) {
 
 /* POST weekly planner. */
 router.post('/newweek', function(req, res, next) {
-  console.log(req.body['action'])
+  console.log(req.body);
+  console.log("The data" + req.body['action']);
   res.send(req.body['action']);
 });
 
